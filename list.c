@@ -19,7 +19,7 @@ struct List {
 
 typedef List List;
 
-Node * createNode(void *data) {
+Node *createNode(void *data) {
     Node *new = (Node *)malloc(sizeof(Node));
     if (new == NULL) return NULL;
     new->data = data;
@@ -28,14 +28,14 @@ Node * createNode(void *data) {
     return new;
 }
 
-List * createList() {
+List *createList() {
     List *list = (List *)malloc(sizeof(List));
     if (!list) return NULL;
     list->head = list->tail = list->current = NULL;
     return list;
 }
 
-void * getFirst(List *list) {
+void *getFirst(List *list) {
     if (!list || !list->head) return NULL;
     list->current = list->head;
     return list->head->data;
@@ -71,7 +71,7 @@ void pushBack(List *list, void *data) {
     }
 }
 
-void * popFront(List *list) {
+void* popFront(List *list) {
     Node *aux = list->head;
     void *data = aux->data;
     list->head = aux->next;
@@ -81,7 +81,7 @@ void * popFront(List *list) {
     return data;
 }
 
-void * popBack(List *list) {
+void *popBack(List *list) {
     if (list==NULL || list->tail==NULL) return NULL;
     Node *aux = list->tail;
     void *data =aux->data;
