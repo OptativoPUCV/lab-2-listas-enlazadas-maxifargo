@@ -40,15 +40,16 @@ void * firstList(List * list) {
     if (list == NULL || list->head == NULL) {
         return NULL;
     }
+    list->current = list->head;
     return list->head->data; 
 }
 
 void * nextList(List * list) {
-    if (list == NULL || list->current == NULL) {
+    if (list == NULL || list->current == NULL|| list->current->next == NULL) {
         return NULL;
     }
     list->current = list->current->next;
-    return list->current->next->data;
+    return list->current->data;
 }
 
 void * lastList(List * list) {
@@ -68,16 +69,11 @@ void * prevList(List * list) {
 }
 
 void pushFront(List * list, void * data) {
-    if (list == NULL) {
-        return;
-    }
-    Node * new = createNode(data);
-    if (list->head == NULL){
-        list->head=new;
-        list->tail=new;
-        list->head->prev = NULL;
-        list->head->next = NULL;
+    Node *new = createNode(data);
+    if (!list->head) {
+        list->head = list->tail = new;
     } else {
+        new->next = list->head;
         list->head->prev = new;
         list->head = new;
     }
@@ -100,60 +96,41 @@ void pushBack(List * list, void * data) {
 
 
 void pushCurrent(List * list, void * data) {
-    if (list == NULL) {
-        return;
-    }
     Node * new = createNode(data);
-    if (list->current == NULL){
-        list->current = new;
-        list->head = new;
-        list->tail = new;
+    if (!list->current) {
+        list->head = list->tail = list->current = new;
     } else {
-        list->current->next = new;
+        new->next = list->current->next;
         new->prev = list->current;
+        if (list->current->next) {
+            list->current->next->prev = new;
+        } else {
+            list->tail = new;
+        }
+        list->current->next = new;
         list->current = new;
-    } return;
+    }
 }
 
 void * popFront(List * list) {
-    if (list == NULL || list->current == NULL) {
-        return NULL;
-    }
-    void * data = list->head->data;
-    if (list->head->prev == NULL && list->head->next == NULL){
-    return list->head->data;} else {
-        list->current = list->head; 
-        if (list->current->prev == NULL){
-            list->current->next->prev = NULL;
-            list->head = list->current->next;
-            list->current->next = NULL;}
-        else if (list->current->next == NULL){
-            list->current->prev->next = NULL;
-            list->tail = list->current->prev;
-            list->current->prev = NULL;}
-        else {
-            list->current->prev->next = list->current->next;
-            list->current->next->prev = list->current->prev;
-            list->current->next = NULL;
-            list->current->prev = NULL;
-            list->current = list->current->next;
-        }
-    }
+    if (!list || !list->head) return NULL;
+    Node * temp = list->head;
+    void * data = temp->data;
+    list->head = temp->next;
+    if (list->head) list->head->prev = NULL;
+    else list->tail = NULL;
+    free(temp);
+    return data;
 }
 
 void * popBack(List * list) {
-    list->current = list->tail;
-    if (list->tail->prev == NULL && list->tail->next == NULL){
-    }
-    void * data = list->tail->data;
-
-    if (list->head == list->tail) {
-        list->head = NULL;
-        list->tail = NULL;
-    } else {
-        list->tail = list->tail->prev;
-        list->tail->next = NULL;
-    }
+    if (!list || !list->tail) return NULL;
+    Node * temp = list->tail;
+    void * data = temp->data;
+    list->tail = temp->prev;
+    if (list->tail) list->tail->next = NULL;
+    else list->head = NULL;
+    free(temp);
     return data;
 }
 
@@ -186,7 +163,6 @@ void * popCurrent(List * list) {
 }
 
 void cleanList(List * list) {
-    while (list->head != NULL) {
-        popFront(list);
-    }
+    while (list->head) popFront(list);
+    free(list);
 }
