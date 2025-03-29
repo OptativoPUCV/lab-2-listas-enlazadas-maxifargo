@@ -49,7 +49,6 @@ void *getNext(List *list) {
 
 void pushFront(List *list, void *data) {
     Node *new = createNode(data);
-    Node *aux = NULL; // Variable extra sin uso real
     if (!list || !new) return;
     if (!list->head) {
         list->head = list->tail = new;

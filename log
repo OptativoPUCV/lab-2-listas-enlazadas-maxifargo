@@ -67,3 +67,23 @@ list.c:52:11: error: unused variable 'aux' [-Werror=unused-variable]
 cc1.exe: all warnings being treated as errors
 Compilation failed
 8f18abd
+Sat, Mar 29, 2025  6:50:36 PM: 
+ list.c | 1 -
+ 1 file changed, 1 deletion(-)
+C:\Users\maxi\AppData\Local\Temp\cc6mwyOs.o:test.c:(.text+0x537): undefined reference to `firstList'
+C:\Users\maxi\AppData\Local\Temp\cc6mwyOs.o:test.c:(.text+0x5f6): undefined reference to `firstList'
+C:\Users\maxi\AppData\Local\Temp\cc6mwyOs.o:test.c:(.text+0x640): undefined reference to `nextList'
+C:\Users\maxi\AppData\Local\Temp\cc6mwyOs.o:test.c:(.text+0x6ff): undefined reference to `nextList'
+C:\Users\maxi\AppData\Local\Temp\cc6mwyOs.o:test.c:(.text+0x754): undefined reference to `nextList'
+C:\Users\maxi\AppData\Local\Temp\cc6mwyOs.o:test.c:(.text+0x7a8): undefined reference to `lastList'
+C:\Users\maxi\AppData\Local\Temp\cc6mwyOs.o:test.c:(.text+0x86d): undefined reference to `prevList'
+C:\Users\maxi\AppData\Local\Temp\cc6mwyOs.o:test.c:(.text+0x92c): undefined reference to `prevList'
+C:\Users\maxi\AppData\Local\Temp\cc6mwyOs.o:test.c:(.text+0x981): undefined reference to `prevList'
+C:\Users\maxi\AppData\Local\Temp\cc6mwyOs.o:test.c:(.text+0xc82): undefined reference to `pushCurrent'
+C:\Users\maxi\AppData\Local\Temp\cc6mwyOs.o:test.c:(.text+0xd53): undefined reference to `pushCurrent'
+C:\Users\maxi\AppData\Local\Temp\cc6mwyOs.o:test.c:(.text+0xe5e): undefined reference to `popCurrent'
+C:\Users\maxi\AppData\Local\Temp\cc6mwyOs.o:test.c:(.text+0xf37): undefined reference to `popCurrent'
+C:\Users\maxi\AppData\Local\Temp\cc6mwyOs.o:test.c:(.text+0x101e): undefined reference to `popCurrent'
+collect2.exe: error: ld returned 1 exit status
+Compilation failed
+694ac7f
