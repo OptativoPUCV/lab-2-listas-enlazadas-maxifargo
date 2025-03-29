@@ -123,3 +123,9 @@ C:\Users\maxi\AppData\Local\Temp\ccMDDbXs.o:test.c:(.text+0x101e): undefined ref
 collect2.exe: error: ld returned 1 exit status
 Compilation failed
 e06ee5c
+Sat, Mar 29, 2025  6:56:49 PM: 
+ list.c | 114 ++++++++++++++++++++++++++++++++++++++++++++++++++++-------------
+ 1 file changed, 91 insertions(+), 23 deletions(-)
+ tests:  12|0
+total_score: 70/70
+9792a6a
